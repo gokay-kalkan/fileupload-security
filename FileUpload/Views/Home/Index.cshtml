@@ -1,0 +1,50 @@
+﻿@model Image
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (TempData["message"]!=null)
+{
+    <div class="alert alert-info">@TempData["message"]</div>
+}
+<br />
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <form method="post"  enctype="multipart/form-data">
+                        <label>Resim Yükle</label>
+                        <input type="file" asp-for="ImagePath"/>
+                        <br />
+                        <button type="submit" class="btn btn-warning mt-2">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<h2>Resimler</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Resim</th>
+                </tr>
+                @foreach (var item in ViewBag.list)
+                {
+                    <tbody>
+                        <tr>
+                            <td><img src="~/img/@item.ImageName" width="70" height="70"/></td>
+                        </tr>
+                    </tbody>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

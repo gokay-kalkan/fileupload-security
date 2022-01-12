@@ -1,0 +1,43 @@
+﻿@model Comment
+@{
+    ViewData["Title"] = "Index";
+}
+@{ string guid =  Guid.NewGuid().ToString();}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <form method="post">
+                        <label>Ad Soyad</label>
+                        <input type="text" class="form-control" asp-for="FullName"/>
+                        <br />
+                        <label>Yorumunuz</label>
+                        <textarea cols="4" rows="4" class="form-control" asp-for="CommentText"></textarea>
+                        <br />
+                        <button type="submit" class="btn btn-warning">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table table-striped">
+    <tr>
+        <th>Ad Soyad</th>
+        <th>Yorumu</th>
+        <th>Detay</th>
+    </tr>
+    @foreach (var item in ViewBag.list)
+    {
+        <tbody>
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.CommentText</td>
+                <td><a asp-action="Detail" asp-route-id="@guid" class="btn btn-primary">Detay</a></td>
+            </tr>
+        </tbody>
+    }
+
+</table>
